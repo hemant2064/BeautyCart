@@ -1,0 +1,1 @@
+export const LOGO_URL ="//thebeautycart.co.in/cdn/shop/files/IMG_9079.png?v=1748000749"
