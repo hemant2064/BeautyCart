@@ -1,13 +1,24 @@
-const Body = () => {
-  return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold text-pink-600">
-        Welcome to BeautyCart
-      </h1>
+import { useEffect, useState } from "react";
+import ProductCard from "./ProductCard";
 
-      <p className="mt-2 text-gray-600">
-        Find your favorite beauty products.
-      </p>
+const Body = () => {
+  const [product, setProduct] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    const prod = await fetch("https://dummyjson.com/products");
+    const json = await prod.json();
+    console.log(json);
+    setProduct(json.products);
+  };
+  return (
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+      {product.map((item) => (
+        <ProductCard
+        key={item.id}
+        product={item}/>
+      ))}
     </div>
   );
 };
